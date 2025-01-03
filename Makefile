@@ -1,14 +1,17 @@
 ENV :=
 
-ifeq ($(OS), Darwin)
-	ENV = macos
-else ifeq ($(OS), Linux)
-	ENV = linux
-else ifeq ($(OS), Windows_NT)
+ifeq ($(OS), Windows_NT)
 	ENV = windows
+else
+	UNIX = $(shell uname -s)
+	ifeq ($(UNIX), Darwin)
+		ENV = macos
+	else ifeq ($(UNIX), Linux)
+		ENV = linux
+	endif
 endif
 
-install: $(ENV)
+install: update $(ENV)
 
 update:
 	@git pull
