@@ -43,7 +43,7 @@ windows:
 	@powershell -Command "Copy-Item -Path ./git/* -Destination ../ -Recurse"
 	@powershell -Command "Copy-Item ./wezterm/.wezterm.lua -Destination ../"
 	@powershell -Command "Copy-Item -Force ./neovim/nvim -Destination ../AppData/Local/ -Recurse"
-	@powershell -Command "git config --global core.excludesFile "../.gitignore""
+	@powershell -Command "git config --global core.excludesFile "%USERPROFILE%/.gitignore""
 	@echo Finished
 
 .PHONY: install update macos linux windows
