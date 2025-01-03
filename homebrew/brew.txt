@@ -1,0 +1,13 @@
+bat
+bottom
+eza
+fzf
+neofetch
+neovim
+pyenv
+ripgrep
+tcl-tk
+teamookla/speedtest/speedtest
+thefuck
+zlib
+zoxide

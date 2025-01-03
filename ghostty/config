@@ -1,0 +1,54 @@
+font-family = JetBrainsMono Nerd Font
+font-size = 14
+
+cursor-style = underline
+cursor-style-blink = true
+cursor-color = #CECDC3
+cursor-text = #100F0F
+
+selection-foreground = #CECDC3
+selection-background = #282726
+
+background-opacity = 0.75
+background-blur-radius = 20
+
+foreground = #CECDC3
+background = #100F0F
+
+palette = 0=#100F0F
+palette = 1=#AF3029
+palette = 2=#66800B
+palette = 3=#AD8301
+palette = 4=#205EA6
+palette = 5=#5E409D
+palette = 6=#24837B
+palette = 7=#CECDC3
+palette = 8=#575653
+palette = 9=#D14D41
+palette = 10=#879A39
+palette = 11=#D0A215
+palette = 12=#4385BE
+palette = 13=#8B7EC8
+palette = 14=#3AA99F
+palette = 15=#FFFCF0
+
+window-padding-x = 10
+window-padding-y = 10
+window-padding-balance = true
+
+window-height = 35
+window-width = 125
+
+confirm-close-surface = false
+
+# change shell for windows
+shell-integration = zsh
+shell-integration-features = no-cursor
+
+# macos only
+macos-titlebar-style = tabs
+
+# linux/windows only (needs additional configuration)
+# window-decoration = false
+# window-theme = auto
+
