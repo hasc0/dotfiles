@@ -27,7 +27,7 @@ macos:
 	@ln -sf ~/dotfiles/ghostty/config ~/.config/ghostty/config
 	@ln -sf ~/dotfiles/wezterm/.wezterm.lua ~/.wezterm.lua
 	@ln -sf ~/dotfiles/powerlevel10k/.p10k.zsh ~/.p10k.zsh
-	@ln -sf ~/dotfiles/neovim/nvim ~/.config/nvim
+	@ln -sf ~/dotfiles/neovim/nvim ~/.config
 	git config --global core.excludesFile '~/.gitignore'
 	@echo Finished
 
