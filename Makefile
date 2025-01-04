@@ -1,35 +1,42 @@
 ENV :=
+PKG :=
 
 ifeq ($(OS), Windows_NT)
 	ENV = windows
+	PKG = choco
 else
 	UNIX = $(shell uname -s)
 	ifeq ($(UNIX), Darwin)
 		ENV = macos
+		PKG = brew
 	else ifeq ($(UNIX), Linux)
 		ENV = linux
 	endif
 endif
 
-install: update $(ENV)
+all: update $(PKG) install
 
 update:
 	@git pull
 
+install: $(ENV)
+
 macos:
 	@echo Installing macOS Configuration
-	@xargs brew install < ./homebrew/brew.txt
-	@ln -sf ~/dotfiles/zsh/.zshrc ~/.zshrc
-	@ln -sf ~/dotfiles/zsh/.zprofile ~/.zprofile
-	@ln -sf ~/dotfiles/zsh/.zshenv ~/.zshenv
-	@ln -sf ~/dotfiles/git/.gitconfig ~/.gitconfig
-	@ln -sf ~/dotfiles/git/.gitignore ~/.gitignore
-	@ln -sf ~/dotfiles/ghostty/config ~/.config/ghostty/config
-	@ln -sf ~/dotfiles/wezterm/.wezterm.lua ~/.wezterm.lua
-	@ln -sf ~/dotfiles/powerlevel10k/.p10k.zsh ~/.p10k.zsh
-	@ln -sf ~/dotfiles/neovim/nvim ~/.config
-	git config --global core.excludesFile '~/.gitignore'
+	@ln -s -f ~/dotfiles/zsh/.zshrc ~/.zshrc
+	@ln -s -f ~/dotfiles/zsh/.zprofile ~/.zprofile
+	@ln -s -f ~/dotfiles/zsh/.zshenv ~/.zshenv
+	@ln -s -f ~/dotfiles/git/.gitconfig ~/.gitconfig
+	@ln -s -f ~/dotfiles/git/.gitignore ~/.gitignore
+	@ln -s -f ~/dotfiles/ghostty/config ~/.config/ghostty/config
+	@ln -s -f ~/dotfiles/wezterm/.wezterm.lua ~/.wezterm.lua
+	@ln -s -f ~/dotfiles/powerlevel10k/.p10k.zsh ~/.p10k.zsh
+	@ln -s -f ~/dotfiles/neovim/nvim ~/.config
+	@git config --global core.excludesFile '~/.gitignore'
 	@echo Finished
+
+brew:
+	@xargs brew install < ./homebrew/brew.txt
 
 linux:
 	@echo Installing Linux Configuration
@@ -38,7 +45,6 @@ linux:
 
 windows:
 	@echo Installing Windows Configuration
-	@powershell -Command "sudo choco install ./chocolatey/packages.config"
 	@powershell -Command "Copy-Item ./powershell/Microsoft.PowerShell_profile.ps1 -Destination ../Documents/PowerShell/"
 	@powershell -Command "Copy-Item -Path ./git/* -Destination ../ -Recurse"
 	@powershell -Command "Copy-Item ./wezterm/.wezterm.lua -Destination ../"
@@ -46,4 +52,7 @@ windows:
 	@powershell -Command "git config --global core.excludesFile "%USERPROFILE%/.gitignore""
 	@echo Finished
 
-.PHONY: install update macos linux windows
+choco:
+	@powershell -Command "sudo choco install ./chocolatey/packages.config"
+
+.PHONY: all install update macos brew linux windows choco

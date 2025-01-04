@@ -115,6 +115,7 @@ require('lazy').setup({
   require 'plugins.theme',
   require 'plugins.todo-comments',
   require 'plugins.treesitter',
+  require 'plugins.trouble',
   require 'plugins.which-key',
 }, {
   ui = {},
