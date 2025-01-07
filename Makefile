@@ -37,6 +37,7 @@ macos:
 
 brew:
 	@xargs brew install < ./homebrew/brew.txt
+	@brew upgrade
 
 linux:
 	@echo Installing Linux Configuration
@@ -55,5 +56,6 @@ windows:
 
 choco:
 	@powershell -Command "sudo choco install ./chocolatey/packages.config"
+	@powershell -Command "sudo choco upgrade all"
 
 .PHONY: all install update macos brew linux windows choco
