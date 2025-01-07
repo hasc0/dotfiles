@@ -48,6 +48,7 @@ windows:
 	@powershell -Command "Copy-Item ./powershell/Microsoft.PowerShell_profile.ps1 -Destination ../Documents/PowerShell/"
 	@powershell -Command "Copy-Item -Path ./git/* -Destination ../ -Recurse"
 	@powershell -Command "Copy-Item ./wezterm/.wezterm.lua -Destination ../"
+	@powershell -Command "Remove-Item ../AppData/Local/nvim/lua/* -Recurse"
 	@powershell -Command "Copy-Item -Force ./neovim/nvim -Destination ../AppData/Local/ -Recurse"
 	@powershell -Command "git config --global core.excludesFile "%USERPROFILE%/.gitignore""
 	@echo Finished
