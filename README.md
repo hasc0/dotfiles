@@ -32,11 +32,13 @@ make all
 ```
 from within the dotfiles directory.
 
-Updates to existing configs can be made using:
+Running `make` is usually only required for fresh installs and when changes have been made and committed from other machines.
+
+If the symbolic links are somehow broken, updates to existing configs can be made using:
 ```
 make install
 ```
-This updates configurations while skipping the `make update` step and without attempting to install packages from Homebrew or Chocolatey.
+This creates the required symbolic links while skipping the `make update` step and without attempting to install packages from Homebrew or Chocolatey.
 
 If an update is made to any configuration, be sure to commit the changes and `make` or `make install` on other machines.
 
