@@ -41,7 +41,9 @@ window-width = 125
 
 confirm-close-surface = false
 
-# change shell for windows
+window-new-tab-position = end
+
+# change shell for windows or use 'detect' option
 shell-integration = zsh
 shell-integration-features = no-cursor
 
