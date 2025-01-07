@@ -46,12 +46,17 @@ linux:
 
 windows:
 	@echo Installing Windows Configuration
-	@powershell -Command "Copy-Item ./powershell/Microsoft.PowerShell_profile.ps1 -Destination ../Documents/PowerShell/"
-	@powershell -Command "Copy-Item -Path ./git/* -Destination ../ -Recurse"
-	@powershell -Command "Copy-Item ./wezterm/.wezterm.lua -Destination ../"
-	@powershell -Command "Remove-Item ../AppData/Local/nvim/lua/* -Recurse"
-	@powershell -Command "Copy-Item -Force ./neovim/nvim -Destination ../AppData/Local/ -Recurse"
-	@powershell -Command "git config --global core.excludesFile "%USERPROFILE%/.gitignore""
+	@powershell -Command "cmd /c if exist %USERPROFILE%\Documents\PowerShell\Microsoft.PowerShell_profile.ps1 del %USERPROFILE%\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
+	@powershell -Command "cmd /c mklink %USERPROFILE%\Documents\PowerShell\Microsoft.PowerShell_profile.ps1 %USERPROFILE%\dotfiles\powershell\Microsoft.PowerShell_profile.ps1"
+	@powershell -Command "cmd /c if exist %USERPROFILE%\.gitconfig del %USERPROFILE%\.gitconfig"
+	@powershell -Command "cmd /c mklink %USERPROFILE%\.gitconfig %USERPROFILE%\dotfiles\git\.gitconfig"
+	@powershell -Command "cmd /c if exist %USERPROFILE%\.gitignore del %USERPROFILE%\.gitignore"
+	@powershell -Command "cmd /c mklink %USERPROFILE%\.gitignore %USERPROFILE%\dotfiles\git\.gitignore"
+	@powershell -Command "cmd /c if exist %USERPROFILE%\.wezterm.lua del %USERPROFILE%\.wezterm.lua"
+	@powershell -Command "cmd /c mklink %USERPROFILE%\.wezterm.lua %USERPROFILE%\dotfiles\wezterm\.wezterm.lua"
+	@powershell -Command "cmd /c if exist %APPDATA%\nvim rmdir /s /q %APPDATA%\nvim"
+	@powershell -Command "cmd /c mklink /d %APPDATA%\nvim %USERPROFILE%\dotfiles\neovim\nvim"
+	@powershell -Command "git config --global core.excludesFile '%USERPROFILE%/.gitignore'"
 	@echo Finished
 
 choco:
