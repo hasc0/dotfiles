@@ -54,8 +54,8 @@ windows:
 	@powershell -Command "cmd /c mklink %USERPROFILE%\.gitignore %USERPROFILE%\dotfiles\git\.gitignore"
 	@powershell -Command "cmd /c if exist %USERPROFILE%\.wezterm.lua del %USERPROFILE%\.wezterm.lua"
 	@powershell -Command "cmd /c mklink %USERPROFILE%\.wezterm.lua %USERPROFILE%\dotfiles\wezterm\.wezterm.lua"
-	@powershell -Command "cmd /c if exist %APPDATA%\nvim rmdir /s /q %APPDATA%\nvim"
-	@powershell -Command "cmd /c mklink /d %APPDATA%\nvim %USERPROFILE%\dotfiles\neovim\nvim"
+	@powershell -Command "cmd /c if exist %LOCALAPPDATA%\nvim rmdir /s /q %LOCALAPPDATA%\nvim"
+	@powershell -Command "cmd /c mklink /d %LOCALAPPDATA%\nvim %USERPROFILE%\dotfiles\neovim\nvim"
 	@powershell -Command "git config --global core.excludesFile '%USERPROFILE%/.gitignore'"
 	@echo Finished
 
