@@ -6,10 +6,13 @@ return {
     'nvim-tree/nvim-web-devicons',
     'MunifTanjim/nui.nvim',
   },
+
   cmd = 'Neotree',
+
   keys = {
     { '\\', ':Neotree reveal<CR>', { desc = 'NeoTree reveal' } },
   },
+
   opts = {
     filesystem = {
       window = {
@@ -17,6 +20,11 @@ return {
           ['\\'] = 'close_window',
         },
       },
+    },
+
+    source_selector = {
+      winbar = true,
+      statusline = false,
     },
   },
 }
