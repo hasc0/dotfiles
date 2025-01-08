@@ -32,20 +32,26 @@ return {
 
           shortcut = {
             {
+              desc = ' New',
+              group = '@function',
+              action = 'ene',
+              key = 'n',
+            },
+            {
               desc = ' Update',
-              group = '@diff.plus',
+              group = '@string',
               action = 'Lazy update',
               key = 'u',
             },
             {
               desc = ' Telescope',
-              group = '@diff.delta',
+              group = '@property',
               action = 'Telescope',
               key = 't',
             },
             {
               desc = ' Config',
-              group = '@diff.minus',
+              group = '@operator',
               action = 'Neotree ~/dotfiles/neovim/nvim/',
               key = 'c',
             },
