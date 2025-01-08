@@ -27,12 +27,21 @@ if os.getenv("OS") == "Darwin" then
 	config.macos_window_background_blur = 8
 end
 
--- Experimenting with cursor
+-- experimenting with cursor
 config.default_cursor_style = "SteadyUnderline"
 
 -- initial window size
 config.initial_rows = 36
 config.initial_cols = 120
+
+-- disable close tab confirmation overlay
+config.keys = {
+	{
+		key = 'w',
+		mods = 'CMD',
+		action = wezterm.action.CloseCurrentTab { confirm = false },
+	},
+}
 
 -- color configuration
 config.colors = {
