@@ -34,11 +34,12 @@ config.default_cursor_style = "SteadyUnderline"
 config.initial_rows = 36
 config.initial_cols = 120
 
--- disable close tab confirmation overlay
+-- disable close window/tab confirmation overlay
+config.window_close_confirmation = "NeverPrompt"
 config.keys = {
 	{
-		key = 'w',
-		mods = 'CMD',
+		key = "w",
+		mods = "CMD",
 		action = wezterm.action.CloseCurrentTab { confirm = false },
 	},
 }

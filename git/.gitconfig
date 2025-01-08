@@ -3,4 +3,4 @@
 	name = Harper Scott
 [core]
 	autocrlf = true
-	excludesFile = ~/.gitignore
+	excludesFile = %USERPROFILE%/.gitignore
