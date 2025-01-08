@@ -2,5 +2,5 @@
 	email = harpercscott@gmail.com
 	name = Harper Scott
 [core]
-	autocrlf = true
-	excludesFile = %USERPROFILE%/.gitignore
+	autocrlf = input
+	excludesFile = ~/.gitignore

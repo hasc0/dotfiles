@@ -1,6 +1,26 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
+-- disable close window confirmation overlay
+config.window_close_confirmation = "NeverPrompt"
+if os.getenv("OS") == "Windows_NT" then
+	config.keys = {
+		{
+			key = "w",
+			mods = "CTRL|SHIFT",
+			action = wezterm.action.CloseCurrentTab { confirm = false },
+		},
+	}
+else
+	config.keys = {
+		{
+			key = "w",
+			mods = "CMD",
+			action = wezterm.action.CloseCurrentTab { confirm = false },
+		},
+	}
+end
+
 -- windows only
 if os.getenv("OS") == "Windows_NT" then
 	config.default_prog = { "pwsh.exe" }
@@ -33,16 +53,6 @@ config.default_cursor_style = "SteadyUnderline"
 -- initial window size
 config.initial_rows = 36
 config.initial_cols = 120
-
--- disable close window/tab confirmation overlay
-config.window_close_confirmation = "NeverPrompt"
-config.keys = {
-	{
-		key = "w",
-		mods = "CTRL|SHIFT",
-		action = wezterm.action.CloseCurrentTab { confirm = false },
-	},
-}
 
 -- color configuration
 config.colors = {
