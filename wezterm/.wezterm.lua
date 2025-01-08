@@ -39,7 +39,7 @@ config.window_close_confirmation = "NeverPrompt"
 config.keys = {
 	{
 		key = "w",
-		mods = "CMD",
+		mods = "CTRL|SHIFT",
 		action = wezterm.action.CloseCurrentTab { confirm = false },
 	},
 }
