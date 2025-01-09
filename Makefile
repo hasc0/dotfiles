@@ -48,8 +48,8 @@ brew:
 gitm:
 	@echo Creating .gituser
 	@echo [user] > ~/.gituser
-	@field='\tname = '; echo Name:; read name; input=$$field$$name; echo -e $$input >> ~/.gituser
-	@field='\temail = '; echo Email:; read email; input=$$field$$email; echo -e $$input >> ~/.gituser
+	@field='\tname = '; echo Name:; read name; input=$$field$$name; echo $$input >> ~/.gituser
+	@field='\temail = '; echo Email:; read email; input=$$field$$email; echo $$input >> ~/.gituser
 	@echo Done
 
 linux:
