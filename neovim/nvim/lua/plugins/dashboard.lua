@@ -5,8 +5,8 @@ return {
     dependencies = { {'nvim-tree/nvim-web-devicons'} },
 
     config = function()
-      vim.api.nvim_set_hl(0, 'DashboardHeader', { fg = '#C5C9C5' })
-      vim.api.nvim_set_hl(0, 'DashboardFooter', { fg = '#C5C9C5' })
+      vim.api.nvim_set_hl(0, 'DashboardHeader', { fg = '#CCC7B4' })
+      vim.api.nvim_set_hl(0, 'DashboardFooter', { fg = '#807A58' })
 
       require('dashboard').setup({
         theme = 'hyper',

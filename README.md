@@ -4,6 +4,7 @@ Beware, these are very unrefined and change often (and may also be somewhat bugg
 
 ## Dependencies
 ### macOS
+- Git
 - Homebrew
 - Oh My Zsh
 - Powerlevel10k
@@ -13,6 +14,7 @@ Beware, these are very unrefined and change often (and may also be somewhat bugg
 - TBD
 
 ### Windows
+- Git
 - Chocolatey
 - PowerShell 7
 - Oh My Posh
@@ -20,9 +22,16 @@ Beware, these are very unrefined and change often (and may also be somewhat bugg
 - JetBrains Mono Nerd Font
 
 ## Installation
-***Ensure this repo is cloned to the home/user directory, as the Makefile scripts depend on paths relative to ~/dotfiles***
+***Ensure this repo is cloned to the home/user directory, as some Makefile scripts may depend on paths relative to ~/dotfiles***
 
-To do an initial install or update existing dotfiles, simply run:
+To do an initial install, simply run the following from within the dotfiles directory:
+```
+make init
+```
+This command runs `make all` and an OS dependent `make` script to create a file for Git user name and email.
+*Running `make init` is usually only required for fresh installs.*
+
+To ensure all configurations are in place for subsequent updates, run:
 ```
 make
 ```
@@ -30,9 +39,7 @@ or
 ```
 make all
 ```
-from within the dotfiles directory.
-
-Running `make` is usually only required for fresh installs and when changes have been made and committed from other machines.
+*This only needs to be run following a change in the remote repository.*
 
 If the symbolic links are somehow broken, updates to existing configs can be made using:
 ```
@@ -40,17 +47,20 @@ make install
 ```
 This creates the required symbolic links while skipping the `make update` step and without attempting to install packages from Homebrew or Chocolatey.
 
-If an update is made to any configuration, be sure to commit the changes and `make` or `make install` on other machines.
+If an update is made to any configuration, be sure to commit the changes and `make` or `make all` on other machines.
 
 The individual commands are:
 ```
 make all
+make init
 make install
 make update
 make macos
 make brew
+make gitm
 make linux
 make windows
 make choco
+make gitw
 ```
-These may be useful should `make` fail on its own for some reason, but something major is likely broken anyways.
+These may be useful should `make` or `make all` fail on its own for some reason, but something major is likely broken anyways.

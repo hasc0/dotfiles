@@ -1,6 +1,5 @@
-[user]
-	email = harpercscott@gmail.com
-	name = Harper Scott
 [core]
 	autocrlf = input
-	excludesFile = ~/.gitignore
+	excludesFile = C:\\Users\\harpe\\.gitignore
+[include]
+	path = C:\\Users\\harpe\\.gituser
