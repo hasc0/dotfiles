@@ -11,7 +11,9 @@ Beware, these are very unrefined and change often (and may also be somewhat bugg
 - JetBrains Mono Nerd Font
 
 ### Linux
-- TBD
+- Git
+- Zsh
+- JetBrains Mono Nerd Font
 
 ### Windows
 - Git
@@ -24,6 +26,7 @@ Beware, these are very unrefined and change often (and may also be somewhat bugg
 ## Installation
 > [!NOTE]
 > Ensure this repo is cloned to the home/user directory, as some Makefile scripts may depend on paths relative to ~/dotfiles
+> Additionally, the Makefile scripts are not guaranteed to work on every Linux distribution.
 
 > [!WARNING]
 > Running the following scripts will overwrite existing local configurations.
@@ -64,8 +67,14 @@ make macos
 make brew
 make gitm
 make linux
+make apt
+make gitl
 make windows
 make choco
 make gitw
 ```
 These may be useful should `make` or `make all` fail on its own for some reason, but something major is likely broken anyways.
+
+> [!NOTE]
+> Several packages cannot be installed by the Linux package manager scripts.
+> A script for installing packages via `curl` will be added in order to simplify Linux package installation and updates/upgrades.

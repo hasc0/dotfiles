@@ -9,5 +9,4 @@ ripgrep
 tcl-tk
 teamookla/speedtest/speedtest
 thefuck
-zlib
 zoxide

@@ -1,4 +1,5 @@
 ENV :=
+DIS :=
 PKG :=
 GIT :=
 
@@ -14,6 +15,11 @@ else
 		GIT = gitm
 	else ifeq ($(UNIX), Linux)
 		ENV = linux
+		DIS = $(shell cat /etc/*release | grep ^NAME | cut -d '=' -f 2 | sed 's/\"//gI')
+		GIT = gitl
+		ifeq ($(DIS), Ubuntu)
+			PKG = apt
+		endif
 	endif
 endif
 
@@ -42,7 +48,7 @@ macos:
 	@echo Finished
 
 brew:
-	@xargs brew install < ./homebrew/brew.txt
+	@xargs brew install < ./homebrew/packages.txt
 	@brew upgrade
 
 gitm:
@@ -54,8 +60,30 @@ gitm:
 
 linux:
 	@echo Installing Linux Configuration
-	@echo Nothing Here
+	@ln -s -f ~/dotfiles/zsh/.zshrc ~/.zshrc
+	@ln -s -f ~/dotfiles/zsh/.zprofile ~/.zprofile
+	@ln -s -f ~/dotfiles/zsh/.zshenv ~/.zshenv
+	@ln -s -f ~/dotfiles/git/.gitconfig ~/.gitconfig
+	@ln -s -f ~/dotfiles/git/.gitignore ~/.gitignore
+	@mkdir -p ~/.config/ghostty && ln -s -f ~/dotfiles/ghostty/config ~/.config/ghostty/config
+	@ln -s -f ~/dotfiles/wezterm/.wezterm.lua ~/.wezterm.lua
+	@ln -s -f ~/dotfiles/powerlevel10k/.p10k.zsh ~/.p10k.zsh
+	@ln -s -f ~/dotfiles/neovim/nvim ~/.config
+	@git config --global core.excludesFile '~/.gitignore'
+	@git config --global include.path '~/.gituser'
 	@echo Finished
+
+apt:
+	@sudo apt update
+	@xargs sudo apt install -y < ./apt/packages.txt
+	@sudo apt upgrade
+
+gitl:
+	@echo Creating .gituser
+	@echo [user] > ~/.gituser
+	@field='\tname = '; echo Name:; read name; input=$$field$$name; echo $$input >> ~/.gituser
+	@field='\temail = '; echo Email:; read email; input=$$field$$email; echo $$input >> ~/.gituser
+	@echo Done
 
 windows:
 	@powershell -Command Write-Output \"Installing Windows Configuration\"
@@ -85,4 +113,4 @@ gitw:
 	@powershell -Command $$field = \"`temail = \"; $$email = Read-Host 'Email'; $$input = $$field + $$email; Add-Content -Path $$env:USERPROFILE/.gituser -Value $$input
 	@powershell -Command Write-Output \"Done\"
 
-.PHONY: all init install update macos brew gitm linux windows choco gitw
+.PHONY: all init install update macos brew gitm linux apt gitl windows choco gitw
