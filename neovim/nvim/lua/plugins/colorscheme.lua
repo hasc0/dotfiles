@@ -7,6 +7,7 @@ return {
       transparent = false,
       undercurl = true,
 
+      -- adjust diagnostic colors
       -- this might do nothing currently?
       overrides = function(colors)
         local theme = colors.theme

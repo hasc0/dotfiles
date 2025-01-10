@@ -25,6 +25,12 @@ return {
       vim.api.nvim_set_hl(0, 'NoiceCmdlineIconFilter', { fg = '#C4746E', bg = 'NONE' })
       vim.api.nvim_set_hl(0, 'NoiceCmdlinePopupBorderInput', { fg = '#C4B28A', bg = 'NONE' })
       vim.api.nvim_set_hl(0, 'NoiceCmdlineIconInput', { fg = '#C4B28A', bg = 'NONE' })
+      vim.api.nvim_set_hl(0, 'NoiceCmdlinePopupBorderLua', { fg = '#7E9CD8', bg = 'NONE' })
+      vim.api.nvim_set_hl(0, 'NoiceCmdlineIconLua', { fg = '#7E9CD8', bg = 'NONE' })
+      vim.api.nvim_set_hl(0, 'NoiceConfirm', { fg = '#8992A7', bg = 'NONE' })
+      vim.api.nvim_set_hl(0, 'NoiceConfirmBorder', { fg = '#8992A7', bg = 'NONE' })
+      vim.api.nvim_set_hl(0, 'NoiceFormatConfirm', { fg = '#8992A7', bg = 'NONE' })
+      vim.api.nvim_set_hl(0, 'NoiceFormatConfirmDefault', { fg = '#8992A7', bg = 'NONE' })
 
       require('noice').setup({
         lsp = {
@@ -97,6 +103,17 @@ return {
               pattern = '^%?',
               icon = ' ',
               lang = 'regex',
+            },
+
+            lua = {
+              title = ' lua ',
+              pattern = '^:%s*lua%s+',
+              icon = '',
+            },
+
+            -- does nothing
+            confirm = {
+              title = ' confirm '
             },
           },
         },

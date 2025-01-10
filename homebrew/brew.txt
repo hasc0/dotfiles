@@ -1,8 +1,8 @@
 bat
 bottom
 eza
+fastfetch
 fzf
-neofetch
 neovim
 pyenv
 ripgrep

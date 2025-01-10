@@ -54,7 +54,7 @@ return {
             {
               desc = ' Config',
               group = '@operator',
-              action = 'Neotree ~/dotfiles/neovim/nvim/',
+              action = 'Neotree right ~/dotfiles/neovim/nvim/',
               key = 'c',
             },
           },

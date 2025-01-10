@@ -40,7 +40,7 @@ return {
 
           --['<C-y>'] = cmp.mapping.confirm { select = true },
 
-          -- traditional autocomplete binds
+          -- traditional binds
           ['<CR>'] = cmp.mapping.confirm { select = true },
           ['<Tab>'] = cmp.mapping.select_next_item(),
           ['<S-Tab>'] = cmp.mapping.select_prev_item(),

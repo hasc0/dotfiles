@@ -22,7 +22,12 @@ Beware, these are very unrefined and change often (and may also be somewhat bugg
 - JetBrains Mono Nerd Font
 
 ## Installation
-***Ensure this repo is cloned to the home/user directory, as some Makefile scripts may depend on paths relative to ~/dotfiles***
+> [!NOTE]
+> Ensure this repo is cloned to the home/user directory, as some Makefile scripts may depend on paths relative to ~/dotfiles
+
+> [!WARNING]
+> Running the following scripts will overwrite existing local configurations.
+> Make backups of local configurations if you want to have a safe fallback.
 
 To do an initial install, simply run the following from within the dotfiles directory:
 ```
