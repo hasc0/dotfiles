@@ -8,9 +8,9 @@ return {
       local date_time = os.date('󰃰 %A, %d %B %Y | %I:%M %p')
 
       local align_center = function(ref_text, text)
-        padding = #ref_text - #text
-        left_pad = math.floor(padding / 2)
-        right_pad = (padding - left_pad)
+        local padding = #ref_text - #text
+        local left_pad = math.floor(padding / 2)
+        local right_pad = (padding - left_pad)
         return string.rep(' ', left_pad) .. text .. string.rep(' ', right_pad)
       end
 
