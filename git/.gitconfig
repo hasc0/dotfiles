@@ -1,5 +1,5 @@
 [core]
 	autocrlf = input
-	excludesFile = ~/.gitignore
+	excludesFile = C:\\Users\\harpe\\.gitignore
 [include]
-	path = ~/.gituser
+	path = C:\\Users\\harpe\\.gituser
