@@ -13,6 +13,7 @@ return {
           theme = custom_kanagawa,
           section_separators = '',
           component_separators = '',
+          disabled_filetypes = { 'dashboard' },
         },
 
         sections = {

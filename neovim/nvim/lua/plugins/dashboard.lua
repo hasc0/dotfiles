@@ -96,26 +96,6 @@ return {
           end,
         },
       })
-
-      vim.api.nvim_create_augroup('dashboard_statusline', { clear = true })
-
-      vim.api.nvim_create_autocmd('FileType', {
-        group = 'dashboard_statusline',
-        pattern = 'dashboard',
-        command = 'set laststatus=0',
-      })
-
-      vim.api.nvim_create_autocmd('FileType', {
-        group = 'dashboard_statusline',
-        pattern = 'dashboard',
-        callback = function()
-          vim.api.nvim_create_autocmd('BufUnload', {
-            group = 'dashboard_statusline',
-            buffer = 0,
-            command = 'set laststatus=2',
-          })
-        end,
-      })
     end,
   },
 }
