@@ -2,22 +2,22 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- automatically install lsps and related tools to stdpath for neovim
-      { 'williamboman/mason.nvim', config = true }, -- must be loaded before dependants
+      { 'williamboman/mason.nvim', config = true }, -- must load first
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-      -- status updates for lsp
+      -- lsp status
       { 'j-hui/fidget.nvim', opts = {} },
 
-      -- neodev configures lua lsp for neovim config, runtime, and plugins
+      -- configures lua lsp for neovim config, runtime, and plugins
       -- used for completion, annotations and signatures of neovim apis
       { 'folke/neodev.nvim', opts = {} },
     },
+
     config = function()
-      --  this function gets run when an lsp attaches to a particular buffer
+      -- this function gets run when an lsp attaches to a particular buffer
       vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
+        group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
         callback = function(event)
           -- function defining lsp specific mappings
           local map = function(keys, func, desc)
@@ -35,8 +35,7 @@ return {
           map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
           -- jump to the type of the word under your cursor
-          -- useful when you're not sure what type a variable is and you want to see
-          -- the definition of its type, not where it was defined
+          -- useful when you're not sure what type a variable is and you want to see the definition of its type, not where it was defined
           map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
 
           -- fuzzy find all the symbols in your current document
@@ -61,7 +60,7 @@ return {
           -- when cursor is moved the highlights will be cleared (the second autocommand)
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.server_capabilities.documentHighlightProvider then
-            local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+            local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
               group = highlight_augroup,
@@ -75,10 +74,10 @@ return {
             })
 
             vim.api.nvim_create_autocmd('LspDetach', {
-              group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+              group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
               callback = function(event2)
                 vim.lsp.buf.clear_references()
-                vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+                vim.api.nvim_clear_autocmds { group = 'lsp-highlight', buffer = event2.buf }
               end,
             })
           end
@@ -115,10 +114,29 @@ return {
               completion = {
                 callSnippet = 'Replace',
               },
-              -- toggle below to ignore lua_ls `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
+
+              diagnostics = {
+                disable = { 'missing-fields' },
+              },
             },
           },
+        },
+
+        -- configurations for lsps that do not work correctly when installed through mason
+        ocamllsp = {
+          cmd = { 'ocamllsp' },
+          filetypes = { 'ocaml', 'ocaml.menhir', 'ocaml.interface', 'ocaml.ocamllex', 'reason', 'dune' },
+          root_dir = function(fname)
+            return require('lspconfig.util').root_pattern(
+              '*.opam',
+              'esy.json',
+              'package.json',
+              '.git',
+              'dune-project',
+              'dune-workspace',
+              '*.ml'
+            )(fname)
+          end,
         },
       }
 
