@@ -21,7 +21,7 @@ return {
         theme = 'hyper',
         shortcut_type = 'number',
 
-        -- handle hiding and unhiding statusline with an autocmd
+        -- handle hiding and unhiding statusline in lualine configuration
         hide = {
           statusline = false,
         },
