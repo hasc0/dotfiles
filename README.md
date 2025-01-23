@@ -25,7 +25,7 @@ Beware, these are very unrefined and change often (and may also be somewhat bugg
 
 ## Installation
 > [!NOTE]
-> Ensure this repo is cloned to the home/user directory, as some Makefile scripts may depend on paths relative to ~/dotfiles
+> Ensure this repo is cloned to the home/user directory, as some Makefile scripts may depend on paths relative to `~/dotfiles`.
 > Additionally, the Makefile scripts are not guaranteed to work on every Linux distribution.
 
 > [!WARNING]
