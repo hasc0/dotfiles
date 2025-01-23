@@ -98,17 +98,9 @@ return {
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-      -- enable the following language servers
+      -- configurations for certain lsps
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
-
         lua_ls = {
-          -- cmd = {...},
-          -- filetypes = {...},
-          -- capabilities = {},
           settings = {
             Lua = {
               completion = {
@@ -122,7 +114,7 @@ return {
           },
         },
 
-        -- configurations for lsps that do not work correctly when installed through mason
+        -- ocaml-lsp-server will not work properly unless configured here and installed via mason
         ocamllsp = {
           cmd = { 'ocamllsp' },
           filetypes = { 'ocaml', 'ocaml.menhir', 'ocaml.interface', 'ocaml.ocamllex', 'reason', 'dune' },
