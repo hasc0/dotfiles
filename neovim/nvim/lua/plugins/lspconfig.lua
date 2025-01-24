@@ -26,35 +26,35 @@ return {
 
           -- jump to the definition of the word under your cursor
           -- to jump back, press <C-t>
-          map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+          map('gd', require('telescope.builtin').lsp_definitions, 'Goto Definition')
 
           -- find references for the word under cursor
-          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+          map('gr', require('telescope.builtin').lsp_references, 'Goto References')
 
           -- jump to the implementation of the word under cursor
-          map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+          map('gI', require('telescope.builtin').lsp_implementations, 'Goto Implementation')
 
           -- jump to the type of the word under your cursor
           -- useful when you're not sure what type a variable is and you want to see the definition of its type, not where it was defined
-          map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+          map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type Definition')
 
           -- fuzzy find all the symbols in your current document
-          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
 
           -- fuzzy find all the symbols in your current workspace
-          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')
 
           -- rename the variable under your cursor
-          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+          map('<leader>rn', vim.lsp.buf.rename, 'Rename')
 
           -- execute a code action, usually cursor needs to be on top of an error or a suggestion from your lsp for this to activate
-          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+          map('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
 
           -- opens a popup that displays documentation about the word under cursor
           map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
           -- goto declaration
-          map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+          map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 
           -- the following two autocommands are used to highlight references of the word under cursor when cursor rests there for a while
           -- when cursor is moved the highlights will be cleared (the second autocommand)
@@ -87,7 +87,7 @@ return {
           if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
             map('<leader>th', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-            end, '[T]oggle Inlay [H]ints')
+            end, 'Toggle Inlay Hints')
           end
         end,
       })

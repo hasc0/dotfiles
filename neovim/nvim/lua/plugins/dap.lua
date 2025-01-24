@@ -28,7 +28,7 @@ return {
       vim.keymap.set('n', '<F3>', dap.step_out, { desc = 'Debug: Step Out' })
       vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
       vim.keymap.set('n', '<leader>B', function()
-        dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+        dap.set_breakpoint(vim.fn.input 'Breakpoint Condition: ')
       end, { desc = 'Debug: Set Breakpoint' })
 
       dapui.setup {
@@ -48,7 +48,7 @@ return {
         },
       }
 
-      vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
+      vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See Last Session Result' })
 
       dap.listeners.after.event_initialized['dapui_config'] = dapui.open
       dap.listeners.before.event_terminated['dapui_config'] = dapui.close

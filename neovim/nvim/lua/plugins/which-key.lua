@@ -1,28 +1,45 @@
 return {
   {
     'folke/which-key.nvim',
-    event = 'VimEnter',
+    event = 'VeryLazy',
+
+    keys = {
+      {
+        '<leader>?',
+        function()
+          require('which-key').show({ global = false })
+        end,
+        desc = 'Buffer Local Keymaps',
+      },
+    },
+
     config = function()
-      require('which-key').setup()
+      require('which-key').setup({
+        preset = 'modern',
+        -- TODO: fix icons
+        icons = { mappings = true },
+      })
 
       require('which-key').add {
-        { '<leader>c', group = '[C]ode' },
+        { '<leader>c', group = 'Code' },
         { '<leader>c_', hidden = true },
-        { '<leader>d', group = '[D]ocument' },
+        { '<leader>d', group = 'Document', },
         { '<leader>d_', hidden = true },
-        { '<leader>h', group = 'Git [H]unk' },
+        { '<leader>h', group = 'Git' },
         { '<leader>h_', hidden = true },
-        { '<leader>r', group = '[R]ename' },
+        { '<leader>r', group = 'Rename' },
         { '<leader>r_', hidden = true },
-        { '<leader>s', group = '[S]earch' },
+        { '<leader>s', group = 'Search' },
         { '<leader>s_', hidden = true },
-        { '<leader>t', group = '[T]oggle' },
+        { '<leader>t', group = 'Toggle' },
         { '<leader>t_', hidden = true },
-        { '<leader>w', group = '[W]orkspace' },
+        { '<leader>w', group = 'Workspace' },
+        { '<leader>w_', hidden = true },
+        { '<leader>x', group = 'Trouble' },
         { '<leader>w_', hidden = true },
 
         -- visual mode
-        { '<leader>h', desc = 'Git [H]unk', mode = 'v' },
+        { '<leader>h', desc = 'Git', mode = 'v' },
       }
     end,
   },
