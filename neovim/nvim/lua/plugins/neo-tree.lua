@@ -11,7 +11,7 @@ return {
     cmd = 'Neotree',
 
     keys = {
-      { '\\', ':Neotree reveal right<CR>', { desc = 'Neotree: Reveal' } },
+      { '\\', '<cmd>Neotree reveal right<cr>', { desc = 'Neotree: Reveal' } },
     },
 
     opts = {
