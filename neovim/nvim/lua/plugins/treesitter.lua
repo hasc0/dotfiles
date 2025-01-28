@@ -9,7 +9,6 @@ return {
         'c',
         'diff',
         'html',
-        'latex',
         'lua',
         'luadoc',
         'markdown',
