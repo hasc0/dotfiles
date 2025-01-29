@@ -22,12 +22,12 @@ return {
 
       require('which-key').add {
         { '<leader>c', group = 'Code' },
-        { '<leader>d', group = 'Document', },
         { '<leader>h', group = 'Git' },
         { '<leader>r', group = 'Rename' },
         { '<leader>s', group = 'Search' },
         { '<leader>t', group = 'Toggle' },
         { '<leader>w', group = 'Workspace' },
+        { '<leader>d', group = 'Diffview', },
         { '<leader>x', group = 'Trouble' },
 
         -- visual mode

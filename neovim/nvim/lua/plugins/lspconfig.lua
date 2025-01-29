@@ -39,7 +39,7 @@ return {
           map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type Definition')
 
           -- fuzzy find all the symbols in your current document
-          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
+          map('<leader>S', require('telescope.builtin').lsp_document_symbols, 'Document Symbols')
 
           -- fuzzy find all the symbols in your current workspace
           map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace Symbols')

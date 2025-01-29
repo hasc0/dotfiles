@@ -2,26 +2,37 @@
 My personal configurations for WezTerm/Neovim/etc.
 Beware, these are very unrefined and change often (and may also be somewhat buggy).
 
-## Dependencies
-### macOS
+## Requirements
+### Common
 - Git
+- JetBrains Mono Nerd Font
+
+### Platform Specific
+<details>
+<summary>macOS</summary>
+
 - Homebrew
 - Oh My Zsh
 - Powerlevel10k
-- JetBrains Mono Nerd Font
 
-### Linux
-- Git
+</details>
+
+<details>
+<summary>Linux</summary>
+
 - Zsh
-- JetBrains Mono Nerd Font
 
-### Windows
-- Git
-- Chocolatey
-- PowerShell 7
-- Oh My Posh
+</details>
+
+<details>
+<summary>Windows</summary>
+
 - Make
-- JetBrains Mono Nerd Font
+- PowerShell 7
+- Chocolatey
+- Oh My Posh
+
+</details>
 
 ## Installation
 > [!NOTE]
@@ -57,7 +68,10 @@ This creates the required symbolic links while skipping the `make update` step a
 
 If an update is made to any configuration, be sure to commit the changes and `make` or `make all` on other machines.
 
-The individual commands are:
+<details>
+<summary>Individual Commands</summary>
+
+The following may be useful should `make` or `make all` fail on its own for some reason, but something major is likely broken anyways.
 ```
 make all
 make init
@@ -73,7 +87,8 @@ make windows
 make choco
 make gitw
 ```
-These may be useful should `make` or `make all` fail on its own for some reason, but something major is likely broken anyways.
+
+</details>
 
 > [!NOTE]
 > Several packages cannot be installed by the Linux package manager scripts.
