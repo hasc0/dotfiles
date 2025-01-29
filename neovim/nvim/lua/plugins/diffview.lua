@@ -1,7 +1,6 @@
 return {
   {
     'sindrets/diffview.nvim',
-
     keys = {
       {
         '<leader>do',
