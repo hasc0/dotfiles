@@ -14,6 +14,10 @@ vim.opt.clipboard = 'unnamedplus'
 -- enable break indent
 vim.opt.breakindent = true
 
+-- set indent behavior
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
 -- save undo history
 vim.opt.undofile = true
 
