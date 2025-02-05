@@ -3,15 +3,7 @@ local config = wezterm.config_builder()
 
 -- disable close window confirmation overlay
 config.window_close_confirmation = "NeverPrompt"
-if os.getenv("OS") == "Windows_NT" then
-	config.keys = {
-		{
-			key = "w",
-			mods = "CTRL|SHIFT",
-			action = wezterm.action.CloseCurrentTab { confirm = false },
-		},
-	}
-else
+if wezterm.target_triple:find("darwin") ~= nil then
 	config.keys = {
 		{
 			key = "w",
@@ -19,18 +11,29 @@ else
 			action = wezterm.action.CloseCurrentTab { confirm = false },
 		},
 	}
+else
+	config.keys = {
+		{
+			key = "w",
+			mods = "CTRL|SHIFT",
+			action = wezterm.action.CloseCurrentTab { confirm = false },
+		},
+	}
 end
 
--- windows only
-if os.getenv("OS") == "Windows_NT" then
+-- os specific configs
+if wezterm.target_triple:find("darwin") ~= nil then
+	config.macos_window_background_blur = 8
+	config.font_size = 14
+elseif wezterm.target_triple:find("windows") ~= nil then
 	config.default_prog = { "pwsh.exe" }
 	config.max_fps = 144
 	config.animation_fps = 144
+	config.font_size = 12
 end
 
--- font_size = 14 for macos, 12 for windows
+-- set terminal font
 config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.font_size = 12
 
 -- classic tab bar config and opacity
 config.enable_tab_bar = true
@@ -41,11 +44,6 @@ config.text_background_opacity = 0.75
 -- window opacity
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.75
-
--- macos only
-if os.getenv("OS") == "Darwin" then
-	config.macos_window_background_blur = 8
-end
 
 -- experimenting with cursor
 config.default_cursor_style = "SteadyUnderline"

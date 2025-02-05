@@ -76,7 +76,7 @@ linux:
 apt:
 	@sudo apt update
 	@xargs sudo apt install -y < ./apt/packages.txt
-	@sudo apt upgrade
+	@sudo apt upgrade -y
 
 gitl:
 	@echo Creating .gituser
@@ -102,8 +102,8 @@ windows:
 	@powershell -Command Write-Output \"Finished\"
 
 choco:
-	@powershell -Command sudo choco install ./chocolatey/packages.config
-	@powershell -Command sudo choco upgrade all
+	@powershell -Command sudo choco install ./chocolatey/packages.config -y
+	@powershell -Command sudo choco upgrade all -y
 
 gitw:
 	@powershell -Command Write-Output \"Creating .gituser\"
