@@ -21,6 +21,8 @@ Beware, these are very unrefined and change often (and may also be somewhat bugg
 <summary>Linux</summary>
 
 - Zsh
+- Oh My Zsh
+- Powerlevel10k
 
 </details>
 
