@@ -6,25 +6,41 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # pyenv in PATH
-eval "$(pyenv init --path)"
-export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
+case `uname` in
+  Darwin)
+    eval "$(pyenv init --path)"
+    export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
+  ;;
+  Linux)
+    export PYENV_ROOT="$HOME/.pyenv"
+    [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init - zsh)"
+  ;;
+esac
 
 # nvm in PATH
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# neovim in PATH (linux only)
+if [[ $(uname) == "Linux" ]]; then
+  export PATH="$PATH:/opt/nvim/"
+fi
+
 # this allows xpra to work
 export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1
 
 # init fzf
-eval "$(fzf --zsh)"
-
-# init thefuck
-eval $(thefuck --alias)
-
-# init zoxide
-eval "$(zoxide init zsh)"
+case `uname` in
+  Darwin)
+    source <(fzf --zsh)
+  ;;
+  Linux)
+    source /usr/share/doc/fzf/examples/key-bindings.zsh
+    source /usr/share/doc/fzf/examples/completion.zsh
+  ;;
+esac
 
 ### Oh-My-Zsh Config ###
 
@@ -102,8 +118,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 #  NOTE: zsh-syntax-highlighting must be last
 plugins=(git
-         thefuck
-         zoxide
          fzf
          zsh-autosuggestions
          zsh-syntax-highlighting)

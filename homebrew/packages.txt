@@ -8,5 +8,3 @@ pyenv
 ripgrep
 tcl-tk
 teamookla/speedtest/speedtest
-thefuck
-zoxide
