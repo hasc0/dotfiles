@@ -87,6 +87,7 @@ gitl:
 
 windows:
 	@powershell -Command Write-Output \"Installing Windows Configuration\"
+	@powershell -Command cmd /c if not exist %USERPROFILE%\Documents\PowerShell mkdir %USERPROFILE%\Documents\PowerShell
 	@powershell -Command cmd /c if exist %USERPROFILE%\Documents\PowerShell\Microsoft.PowerShell_profile.ps1 del %USERPROFILE%\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
 	@powershell -Command cmd /c mklink %USERPROFILE%\Documents\PowerShell\Microsoft.PowerShell_profile.ps1 %USERPROFILE%\dotfiles\powershell\Microsoft.PowerShell_profile.ps1
 	@powershell -Command cmd /c if exist %USERPROFILE%\.gitconfig del %USERPROFILE%\.gitconfig
