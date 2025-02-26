@@ -19,6 +19,8 @@ else
 		GIT = gitl
 		ifeq ($(DIS), Ubuntu)
 			PKG = apt
+		else ifeq ($(DIS), Arch Linux)
+			PKG = pacman yay
 		endif
 	endif
 endif
@@ -78,6 +80,14 @@ apt:
 	@xargs sudo apt install -y < ./apt/packages.txt
 	@sudo apt upgrade -y
 
+pacman:
+	@sudo pacman -S --needed - < ./pacman/packages.txt
+	@sudo pacman -Syu
+
+yay:
+	@yay -S --needed < ./yay/packages.txt
+	@yay -Syu --aur 
+
 gitl:
 	@echo Creating .gituser
 	@echo [user] > ~/.gituser
@@ -114,4 +124,4 @@ gitw:
 	@powershell -Command $$field = \"`temail = \"; $$email = Read-Host 'Email'; $$input = $$field + $$email; Add-Content -Path $$env:USERPROFILE/.gituser -Value $$input
 	@powershell -Command Write-Output \"Done\"
 
-.PHONY: all init install update macos brew gitm linux apt gitl windows choco gitw
+.PHONY: all init install update macos brew gitm linux apt pacman yay gitl windows choco gitw
