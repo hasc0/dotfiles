@@ -1,2 +1,3 @@
 spotify
 via-bin
+visual-studio-code-bin

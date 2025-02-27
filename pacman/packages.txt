@@ -1,4 +1,3 @@
-code
 dhcpcd
 discord
 firefox
