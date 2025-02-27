@@ -36,10 +36,6 @@ case `uname` in
   Darwin)
     source <(fzf --zsh)
   ;;
-  Linux)
-    source /usr/share/doc/fzf/examples/key-bindings.zsh
-    source /usr/share/doc/fzf/examples/completion.zsh
-  ;;
 esac
 
 ### Oh-My-Zsh Config ###
@@ -152,9 +148,6 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 
 
 # BEGIN opam configuration
