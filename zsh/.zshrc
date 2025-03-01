@@ -156,4 +156,7 @@ source $ZSH/oh-my-zsh.sh
 #   - auto-completion for the opam binary
 # This section can be safely removed at any time if needed.
 [[ ! -r '$HOME/.opam/opam-init/init.zsh' ]] || source '$HOME/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+
+# initialize opam environment variables
+eval $(opam env)
 # END opam configuration
