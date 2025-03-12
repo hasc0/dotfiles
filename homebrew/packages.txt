@@ -1,5 +1,5 @@
 bat
-bottom
+btop
 eza
 fastfetch
 fzf
