@@ -1,8 +1,7 @@
 return {
   {
     'vyfor/cord.nvim',
-    build = './build || .\\build',
-    event = 'VeryLazy',
+    build = ':Cord update',
     opts = {},
   },
 }
