@@ -1,1 +1,3 @@
-. "$HOME/.cargo/env"
+if [[ $(uname) == "Darwin" ]]; then
+	. "$HOME/.cargo/env"
+fi
