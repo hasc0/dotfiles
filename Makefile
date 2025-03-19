@@ -71,6 +71,7 @@ linux:
 	@ln -s -f ~/dotfiles/wezterm/.wezterm.lua ~/.wezterm.lua
 	@ln -s -f ~/dotfiles/powerlevel10k/.p10k.zsh ~/.p10k.zsh
 	@ln -s -f ~/dotfiles/neovim/nvim ~/.config
+	@mkdir -p ~/.config/fastfetch && ln -s -f ~/dotfiles/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc
 	@git config --global core.excludesFile '~/.gitignore'
 	@git config --global include.path '~/.gituser'
 	@echo Finished
