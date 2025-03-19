@@ -26,8 +26,8 @@
             "menu-actions": {
                 "logout": "hyprctl dispatch exit",
                 "suspend": "systemctl suspend",
-                "reboot": "reboot",
-                "shutdown": "shutdown",
+                "reboot": "systemctl reboot",
+                "shutdown": "systemctl poweroff",
             },
     },
     "hyprland/workspaces": {
@@ -54,7 +54,7 @@
         "format-icons": {
             "default": " ",
             "spotify": "",
-            "plasma-browser-integration": "󰈹",
+            "firefox": "󰈹",
         },
         "escape": true,
         "exec": "$HOME/.config/waybar/media.sh 2> /dev/null",

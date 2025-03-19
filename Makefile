@@ -18,8 +18,10 @@ else
 		DIS = $(shell cat /etc/*release | grep ^NAME | cut -d '=' -f 2 | sed 's/\"//gI')
 		GIT = gitl
 		ifeq ($(DIS), Ubuntu)
+			ENV = ubuntu
 			PKG = apt
 		else ifeq ($(DIS), Arch Linux)
+			ENV = arch
 			PKG = pacman yay
 		endif
 	endif
@@ -61,19 +63,25 @@ gitm:
 	@echo Done
 
 linux:
-	@echo Installing Linux Configuration
+	@echo Installing Basic Linux Configuration
+	@ln -s -f ~/dotfiles/git/.gitconfig ~/.gitconfig
+	@ln -s -f ~/dotfiles/git/.gitignore ~/.gitignore
+	@ln -s -f ~/dotfiles/neovim/nvim ~/.config
+	@git config --global core.excludesFile '~/.gitignore'
+	@git config --global include.path '~/.gituser'
+	@echo Finished
+
+ubuntu:
+	@echo Installing Ubuntu Configuration
 	@ln -s -f ~/dotfiles/zsh/.zshrc ~/.zshrc
 	@ln -s -f ~/dotfiles/zsh/.zprofile ~/.zprofile
 	@ln -s -f ~/dotfiles/zsh/.zshenv ~/.zshenv
 	@ln -s -f ~/dotfiles/git/.gitconfig ~/.gitconfig
 	@ln -s -f ~/dotfiles/git/.gitignore ~/.gitignore
 	@ln -s -f ~/dotfiles/ghostty ~/.config
-	@ln -s -f ~/dotfiles/wezterm/.wezterm.lua ~/.wezterm.lua
 	@ln -s -f ~/dotfiles/powerlevel10k/.p10k.zsh ~/.p10k.zsh
 	@ln -s -f ~/dotfiles/fastfetch ~/.config
 	@ln -s -f ~/dotfiles/neovim/nvim ~/.config
-	@ln -s -f ~/dotfiles/hyprland/hypr ~/.config
-	@ln -s -f ~/dotfiles/waybar ~/.config
 	@git config --global core.excludesFile '~/.gitignore'
 	@git config --global include.path '~/.gituser'
 	@echo Finished
@@ -83,13 +91,31 @@ apt:
 	@xargs sudo apt install -y < ./apt/packages.txt
 	@sudo apt upgrade -y
 
+arch:
+	@echo Installing Arch Linux Configuration
+	@ln -s -f ~/dotfiles/zsh/.zshrc ~/.zshrc
+	@ln -s -f ~/dotfiles/zsh/.zprofile ~/.zprofile
+	@ln -s -f ~/dotfiles/zsh/.zshenv ~/.zshenv
+	@ln -s -f ~/dotfiles/git/.gitconfig ~/.gitconfig
+	@ln -s -f ~/dotfiles/git/.gitignore ~/.gitignore
+	@ln -s -f ~/dotfiles/ghostty ~/.config
+	@ln -s -f ~/dotfiles/powerlevel10k/.p10k.zsh ~/.p10k.zsh
+	@ln -s -f ~/dotfiles/fastfetch ~/.config
+	@ln -s -f ~/dotfiles/neovim/nvim ~/.config
+	@ln -s -f ~/dotfiles/hyprland/hypr ~/.config
+	@ln -s -f ~/dotfiles/waybar ~/.config
+	@ln -s -f ~/dotfiles/rofi ~/.config
+	@git config --global core.excludesFile '~/.gitignore'
+	@git config --global include.path '~/.gituser'
+	@echo Finished
+
 pacman:
 	@sudo pacman -S --needed - < ./pacman/packages.txt
 	@sudo pacman -Syu
 
 yay:
 	@yay -S --needed < ./yay/packages.txt
-	@yay -Syu --aur 
+	@yay -Syu --aur
 
 gitl:
 	@echo Creating .gituser
@@ -127,4 +153,4 @@ gitw:
 	@powershell -Command $$field = \"`temail = \"; $$email = Read-Host 'Email'; $$input = $$field + $$email; Add-Content -Path $$env:USERPROFILE/.gituser -Value $$input
 	@powershell -Command Write-Output \"Done\"
 
-.PHONY: all init install update macos brew gitm linux apt pacman yay gitl windows choco gitw
+.PHONY: all init install update macos brew gitm linux ubuntu apt arch pacman yay gitl windows choco gitw
