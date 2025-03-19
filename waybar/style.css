@@ -1,0 +1,106 @@
+* {
+    font-family: JetBrainsMono Nerd Font;
+    font-size: 14px;
+}
+
+window#waybar {
+    background-color: transparent;
+}
+
+button {
+    border: none;
+}
+
+button:hover {
+    background: none;
+}
+
+#custom-power,
+#workspaces,
+#cpu,
+#memory,
+#custom-media,
+#tray,
+#pulseaudio,
+#clock,
+#custom-swaync {
+    margin-top: 3px;
+    margin-bottom: 0px;
+    margin-left: 4px;
+    margin-right: 4px;
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#custom-power:hover,
+#custom-media:hover,
+#pulseaudio:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modules-left > widget:first-child #custom-power {
+    margin-left: 8px;
+}
+
+.modules-right > widget:last-child > #custom-swaync {
+    margin-right: 8px;
+}
+
+#custom-power {
+    padding-left: 10px;
+    padding-right: 13px;
+}
+
+#workspaces {
+    padding-left: 2px;
+    padding-right: 7px;
+}
+
+#workspaces button {
+    padding: 2px;
+}
+
+#cpu,
+#memory {
+    padding-left: 10px;
+    padding-right: 15px;
+}
+
+#custom-media {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#tray {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+#pulseaudio {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#pulseaudio.muted {
+    background-color: rgba(200, 10, 10, 0.7);
+}
+
+#clock {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#custom-swaync {
+    padding-left: 10px;
+    padding-right: 13px;
+}
+

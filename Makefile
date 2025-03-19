@@ -67,11 +67,13 @@ linux:
 	@ln -s -f ~/dotfiles/zsh/.zshenv ~/.zshenv
 	@ln -s -f ~/dotfiles/git/.gitconfig ~/.gitconfig
 	@ln -s -f ~/dotfiles/git/.gitignore ~/.gitignore
-	@mkdir -p ~/.config/ghostty && ln -s -f ~/dotfiles/ghostty/config ~/.config/ghostty/config
+	@ln -s -f ~/dotfiles/ghostty ~/.config
 	@ln -s -f ~/dotfiles/wezterm/.wezterm.lua ~/.wezterm.lua
 	@ln -s -f ~/dotfiles/powerlevel10k/.p10k.zsh ~/.p10k.zsh
+	@ln -s -f ~/dotfiles/fastfetch ~/.config
 	@ln -s -f ~/dotfiles/neovim/nvim ~/.config
-	@mkdir -p ~/.config/fastfetch && ln -s -f ~/dotfiles/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc
+	@ln -s -f ~/dotfiles/hyprland/hypr ~/.config
+	@ln -s -f ~/dotfiles/waybar ~/.config
 	@git config --global core.excludesFile '~/.gitignore'
 	@git config --global include.path '~/.gituser'
 	@echo Finished

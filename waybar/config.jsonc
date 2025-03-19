@@ -1,0 +1,89 @@
+{
+    "layer": "top",
+    "position": "top",
+    "spacing": 0,
+    "modules-left": [
+        "custom/power",
+        "hyprland/workspaces",
+        "cpu",
+        "memory",
+    ],
+    "modules-center": [
+        "custom/media",
+    ],
+    "modules-right": [
+        "tray",
+        "pulseaudio",
+        "clock",
+        "custom/swaync",
+    ],
+
+    "custom/power": {
+        "format" : "󰣇",
+            "tooltip": false,
+            "menu": "on-click",
+            "menu-file": "$HOME/.config/waybar/power.xml",
+            "menu-actions": {
+                "logout": "hyprctl dispatch exit",
+                "suspend": "systemctl suspend",
+                "reboot": "reboot",
+                "shutdown": "shutdown",
+            },
+    },
+    "hyprland/workspaces": {
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "default": "",
+            "active": "",
+        },
+    },
+    "cpu": {
+        "format": "{usage}% ",
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "custom/media": {
+        "format": "{icon} {text}",
+        "return-type": "json",
+        "max-length": 100,
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "format-icons": {
+            "default": " ",
+            "spotify": "",
+            "plasma-browser-integration": "󰈹",
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/media.sh 2> /dev/null",
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon} {format_source}",
+        "format-muted": "  {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": " ",
+        "format-icons": {
+            "default": [" ", " ", " "]
+        },
+        "on-click": "pavucontrol"
+    },
+    "clock": {
+        "timezone": "America/New_York",
+        "format": "{:%I:%M:%S %p}",
+        "format-alt": "{:%A, %B %d %Y}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "interval": 1,
+    },
+    "custom/swaync": {
+        "format": "󰂚",
+        "on-click": "swaync-client -t -sw",
+        "tooltip-format": "Notifications",
+    },
+}
+
