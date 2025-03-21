@@ -47,7 +47,7 @@
         },
         {
           "label": "",
-          "command": "dolphin"
+          "command": "thunar"
         },
         {
           "label": "",
