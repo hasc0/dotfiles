@@ -105,6 +105,7 @@ arch:
 	@ln -s -f ~/dotfiles/hyprland/hypr ~/.config
 	@ln -s -f ~/dotfiles/waybar ~/.config
 	@ln -s -f ~/dotfiles/rofi ~/.config
+	@ln -s -f ~/dotfiles/swaync ~/.config
 	@git config --global core.excludesFile '~/.gitignore'
 	@git config --global include.path '~/.gituser'
 	@echo Finished

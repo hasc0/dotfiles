@@ -4,13 +4,8 @@ while true; do
 	player_status=$(playerctl status 2> /dev/null)
 
 	player=$(playerctl metadata --format '{{playerName}}')
-
 	title=$(playerctl metadata --format '{{title}}')
 	artist=$(playerctl metadata --format '{{artist}}')
-	# escape ampersands in title and artist
-	title=$(echo "$title" | sed 's/&/&amp;/g')
-	artist=$(echo "$artist" | sed 's/&/&amp;/g')
-
 	position=$(playerctl metadata --format '{{duration(position)}}')
 	length=$(playerctl metadata --format '{{duration(mpris:length)}}')
 

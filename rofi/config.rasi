@@ -156,20 +156,20 @@ mode-switcher {
 	border-radius: 5px;
 	border-color: @border;
 	text-color: @foreground;
-	background-color: @background;
+	background-color: transparent;
 }
 
 button {
 	border-radius: 5px;
 	text-color: inherit;
-	background-color: transparent;
+	background-color: @background;
 }
 
 button selected {
 	border: 2px;
 	border-color: @border;
 	text-color: inherit;
-	background-color: transparent;
+	background-color: @selected;
 }
 
 message {
