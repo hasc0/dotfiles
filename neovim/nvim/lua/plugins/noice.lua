@@ -9,7 +9,8 @@ return {
         opts = {
           render = 'wrapped-compact',
           stages = 'fade',
-          timeout = 3000,
+          timeout = 1000,
+          top_down = false,
         },
       },
     },
