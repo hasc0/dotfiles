@@ -6,6 +6,9 @@ return {
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
+      -- completion
+      'saghen/blink.cmp',
+
       -- lsp status
       { 'j-hui/fidget.nvim', opts = {} },
 
@@ -25,7 +28,6 @@ return {
           end
 
           -- jump to the definition of the word under your cursor
-          -- to jump back, press <C-t>
           map('gd', require('telescope.builtin').lsp_definitions, 'Goto Definition')
 
           -- find references for the word under cursor
@@ -35,7 +37,6 @@ return {
           map('gI', require('telescope.builtin').lsp_implementations, 'Goto Implementation')
 
           -- jump to the type of the word under your cursor
-          -- useful when you're not sure what type a variable is and you want to see the definition of its type, not where it was defined
           map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type Definition')
 
           -- fuzzy find all the symbols in your current document
@@ -57,7 +58,7 @@ return {
           map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 
           -- the following two autocommands are used to highlight references of the word under cursor when cursor rests there for a while
-          -- when cursor is moved the highlights will be cleared (the second autocommand)
+          -- when cursor is moved the highlights will be cleared
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.server_capabilities.documentHighlightProvider then
             local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
@@ -83,7 +84,6 @@ return {
           end
 
           -- the following autocommand is used to enable inlay hints in code if the language server you are using supports them
-          -- this may be unwanted, since they displace some code
           if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
             map('<leader>th', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
@@ -92,11 +92,8 @@ return {
         end,
       })
 
-      -- lsp servers and clients are able to communicate to each other what features they support
-      -- by default, neovim doesn't support everything that is in the lsp specification
-      -- so, create new capabilities with nvim cmp, and then broadcast that to the servers
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+      -- capabilities for blink
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
 
       -- configurations for certain lsps
       local servers = {
@@ -138,11 +135,8 @@ return {
       require('mason-lspconfig').setup {
         handlers = {
           function(server_name)
-            local server = servers[server_name] or {}
-            -- this handles overriding only values explicitly passed by the server configuration above
-            -- useful when disabling certain features of an lsp (for example, turning off formatting for tsserver)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            -- handle servers without a configuration defined above
+            require('lspconfig')[server_name].setup({ capabilities = capabilities })
           end,
         },
       }
