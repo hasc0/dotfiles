@@ -28,7 +28,6 @@ return {
         { '<leader>t', group = 'Toggle' },
         { '<leader>w', group = 'Workspace' },
         { '<leader>d', group = 'Diffview', },
-        { '<leader>x', group = 'Trouble' },
 
         -- visual mode
         { '<leader>h', desc = 'Git', mode = 'v' },
