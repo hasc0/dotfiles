@@ -6,15 +6,20 @@ return {
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-      -- completion
-      'saghen/blink.cmp',
-
       -- lsp status
       { 'j-hui/fidget.nvim', opts = {} },
 
-      -- configures lua lsp for neovim config, runtime, and plugins
-      -- used for completion, annotations and signatures of neovim apis
-      { 'folke/neodev.nvim', opts = {} },
+      -- completion
+      'saghen/blink.cmp',
+
+      -- lua lsp completion for neovim config
+      {
+        'folke/lazydev.nvim',
+        ft = 'lua',
+        opts = {
+          library = { { path = '${3rd}/luv/library', words = { 'vim%.uv' } } },
+        },
+      },
     },
 
     config = function()
@@ -57,8 +62,7 @@ return {
           -- goto declaration
           map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 
-          -- the following two autocommands are used to highlight references of the word under cursor when cursor rests there for a while
-          -- when cursor is moved the highlights will be cleared
+          -- highlight references of word under cursor (when cursor is moved the highlights will be cleared)
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.server_capabilities.documentHighlightProvider then
             local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
@@ -83,7 +87,7 @@ return {
             })
           end
 
-          -- the following autocommand is used to enable inlay hints in code if the language server you are using supports them
+          -- enable inlay hints in code if the language server you are using supports them
           if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
             map('<leader>th', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
@@ -92,54 +96,21 @@ return {
         end,
       })
 
-      -- capabilities for blink
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
+      -- server configuration
+      require('mason').setup({})
+      require('mason-lspconfig').setup({
+        ensure_installed = { 'lua_ls' },
+        automatic_installation = false,
 
-      -- configurations for certain lsps
-      local servers = {
-        lua_ls = {
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = 'Replace',
-              },
-
-              diagnostics = {
-                disable = { 'missing-fields' },
-              },
-            },
-          },
-        },
-
-        -- ocaml-lsp-server will not work properly unless configured here and installed via mason
-        ocamllsp = {
-          cmd = { 'ocamllsp' },
-          filetypes = { 'ocaml', 'ocaml.menhir', 'ocaml.interface', 'ocaml.ocamllex', 'reason', 'dune' },
-          root_dir = function(fname)
-            return require('lspconfig.util').root_pattern(
-              '*.opam',
-              'esy.json',
-              'package.json',
-              '.git',
-              'dune-project',
-              'dune-workspace',
-              '*.ml'
-            )(fname)
-          end,
-        },
-      }
-
-      -- ensure the servers and tools above are installed
-      require('mason').setup()
-
-      require('mason-lspconfig').setup {
+        -- automatic server setup (and overrides)
         handlers = {
-          function(server_name)
-            -- handle servers without a configuration defined above
-            require('lspconfig')[server_name].setup({ capabilities = capabilities })
+          function(server)
+            -- capabilities for blink
+            local capabilities = require('blink.cmp').get_lsp_capabilities()
+            require('lspconfig')[server].setup({ capabilities = capabilities })
           end,
         },
-      }
+      })
     end,
   },
 }

@@ -2,7 +2,7 @@ return {
   {
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
-    dependencies = { {'nvim-tree/nvim-web-devicons'} },
+    dependencies = { { 'nvim-tree/nvim-web-devicons' } },
 
     config = function()
       local date_time = os.date('󰃰 %A, %d %B %Y | %I:%M %p')

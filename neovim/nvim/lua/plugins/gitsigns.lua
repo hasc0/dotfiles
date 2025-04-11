@@ -50,7 +50,7 @@ return {
         map('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'Git: Stage Buffer' })
         map('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'Git: Reset Buffer' })
         map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'Git: Preview Hunk' })
-        map('n', '<leader>hp', gitsigns.preview_hunk_inline, { desc = 'Git: Preview Hunk Inline' })
+        map('n', '<leader>hi', gitsigns.preview_hunk_inline, { desc = 'Git: Preview Hunk Inline' })
         map('n', '<leader>hb', gitsigns.blame_line, { desc = 'Git: Blame Line' })
         map('n', '<leader>hd', gitsigns.diffthis, { desc = 'Git: Diff Against Index' })
         map('n', '<leader>hD', function()
@@ -59,7 +59,6 @@ return {
 
         -- toggles
         map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = 'Git: Toggle Show Blame Line' })
-        map('n', '<leader>tD', gitsigns.toggle_deleted, { desc = 'Git: Toggle Show Deleted' })
       end,
     },
   },

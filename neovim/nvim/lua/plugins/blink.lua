@@ -12,7 +12,17 @@ return {
         ghost_text = { enabled = true },
       },
 
-      sources = { default = { 'lsp', 'path', 'snippets', 'buffer' } },
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
+
+        providers = {
+          lazydev = {
+            name = 'LazyDev',
+            module = 'lazydev.integrations.blink',
+            score_offset = 100,
+          },
+        },
+      },
     },
   },
 }
