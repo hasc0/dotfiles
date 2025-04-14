@@ -60,6 +60,9 @@ source $ZSH/oh-my-zsh.sh
 # Remove zsh-syntax-highlighting underlines from paths
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none
+ZSH_HIGHLIGHT_STYLES[autodirectory]=fg=green
+ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=green
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=green
 
 # Initialize opam
 [[ ! -r '$HOME/.opam/opam-init/init.zsh' ]] || source '$HOME/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
