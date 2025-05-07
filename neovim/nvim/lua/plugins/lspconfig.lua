@@ -2,9 +2,8 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      { 'williamboman/mason.nvim', config = true }, -- must load first
-      'williamboman/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
+      { 'mason-org/mason.nvim', config = true }, -- must load first
+      'mason-org/mason-lspconfig.nvim',
 
       -- lsp status
       { 'j-hui/fidget.nvim', opts = {} },
@@ -100,9 +99,8 @@ return {
       require('mason').setup({})
       require('mason-lspconfig').setup({
         ensure_installed = { 'lua_ls' },
-        automatic_installation = false,
+        automatic_enable = true,
 
-        -- automatic server setup (and overrides)
         handlers = {
           function(server)
             -- capabilities for blink
