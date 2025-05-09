@@ -2,11 +2,12 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      { 'mason-org/mason.nvim', config = true }, -- must load first
+      -- lsp package manager
+      'mason-org/mason.nvim',
       'mason-org/mason-lspconfig.nvim',
 
       -- lsp status
-      { 'j-hui/fidget.nvim', opts = {} },
+      'j-hui/fidget.nvim',
 
       -- completion
       'saghen/blink.cmp',
@@ -95,7 +96,7 @@ return {
         end,
       })
 
-      -- server configuration
+      -- automatic server configuration
       require('mason').setup({})
       require('mason-lspconfig').setup({
         ensure_installed = { 'lua_ls' },
