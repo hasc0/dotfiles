@@ -1,0 +1,18 @@
+[background]
+path = "/usr/share/backgrounds/login.jpg"
+fit = "Fill"
+
+[GTK]
+application_prefer_dark_theme = true
+
+[commands]
+reboot = [ "systemctl", "reboot" ]
+poweroff = [ "systemctl", "poweroff" ]
+
+[appearance]
+greeting_msg = "Computer Time :)"
+
+[widget.clock]
+format = " %A, %B %d %Y - %I:%M %p "
+resolution = "500ms"
+label_width = 250
